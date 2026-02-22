@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Upload, FileText, Zap, Download, CheckCircle, AlertCircle, Link as LinkIcon, ExternalLink, Share2 } from 'lucide-react';
+import { Upload, FileText, Zap, Download, CheckCircle, AlertCircle, Link as LinkIcon, ExternalLink, Share2, Award, ShieldCheck, Heart } from 'lucide-react';
 import { processPdf } from './utils/pdf-processor';
 
 function App() {
@@ -126,7 +126,39 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#020617] text-slate-200 flex flex-col items-center justify-center p-4 sm:p-6 lg:p-12 font-sans selection:bg-blue-500/30 overflow-hidden">
+    <div className="min-h-screen bg-[#020617] text-slate-200 flex flex-col items-center justify-start p-4 sm:p-6 lg:p-12 font-sans selection:bg-blue-500/30 overflow-x-hidden">
+
+      {/* Premium Branding Header */}
+      <header className="w-full max-w-6xl mx-auto px-4 py-8 sm:py-12 flex flex-col items-center relative z-50 animate-in fade-in slide-in-from-top-4 duration-1000">
+        <div className="flex flex-col sm:flex-row items-center gap-5 sm:gap-8 text-center text-center">
+          <div className="relative group">
+            {/* Outer Glow */}
+            <div className="absolute -inset-4 bg-blue-500/10 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+
+            {/* Logo Box */}
+            <div className="w-20 h-20 sm:w-24 sm:h-24 bg-slate-900 border border-white/10 rounded-2xl sm:rounded-3xl flex items-center justify-center text-blue-500 font-extrabold italic shadow-2xl text-4xl sm:text-6xl relative overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent"></div>
+              <div className="relative z-10 animate-float">V</div>
+
+              {/* Floating Plus Sign */}
+              <div className="absolute top-1 right-1 w-6 h-6 bg-emerald-500 rounded-lg flex items-center justify-center shadow-lg transform rotate-0 scale-75">
+                <div className="w-0.5 h-4 bg-white absolute"></div>
+                <div className="w-4 h-0.5 bg-white absolute"></div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center sm:items-start leading-none">
+            <h1 className="text-4xl sm:text-7xl font-black tracking-tighter text-white">
+              Vita<span className="text-blue-500">HealthCare</span>
+            </h1>
+            <p className="text-[11px] sm:text-sm font-black text-slate-500 uppercase tracking-[0.4em] mt-3 flex items-center gap-3">
+              <span className="hidden sm:block w-8 h-px bg-gradient-to-r from-blue-500 to-transparent"></span>
+              Your Health, Our Priority
+            </p>
+          </div>
+        </div>
+      </header>
 
       {/* Background Glows */}
       <div className="fixed top-[-10%] left-[-10%] w-[50rem] h-[50rem] bg-blue-600/10 rounded-full blur-[120px] -z-10 animate-glow"></div>
@@ -144,12 +176,12 @@ function App() {
           {/* Subtle Shimmer Overlay */}
           <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.02] to-transparent pointer-events-none"></div>
 
-          <div className="p-10 sm:p-16 space-y-12 text-center relative z-10">
+          <div className="p-6 sm:p-16 space-y-8 sm:space-y-12 text-center relative z-10">
 
             {/* Dropzone with Scan Effect */}
             <div
               {...getRootProps()}
-              className={`relative border-2 border-dashed rounded-[3rem] p-16 transition-all duration-700 cursor-pointer group overflow-hidden
+              className={`relative border-2 border-dashed rounded-[2rem] sm:rounded-[3rem] p-8 sm:p-16 transition-all duration-700 cursor-pointer group overflow-hidden
                 ${isDragActive ? 'border-blue-400 bg-blue-500/10 scale-[0.98]' : 'border-slate-800 hover:border-blue-500/40 bg-slate-900/40'}`}
             >
               <input {...getInputProps()} />
@@ -157,15 +189,15 @@ function App() {
               {/* Scan Line Animation (only during drag or hover) */}
               <div className="scan-line group-hover:block transition-opacity opacity-0 group-hover:opacity-100"></div>
 
-              <div className="flex flex-col items-center space-y-8 relative z-20">
-                <div className="w-32 h-32 bg-slate-800/50 rounded-[2.5rem] flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-500/10 transition-all duration-700 shadow-[inset_0_2px_10px_rgba(0,0,0,0.3)] border border-white/5">
-                  <FileText className={`transition-all duration-700 ${isDragActive ? 'text-blue-400 scale-110' : 'text-slate-500 group-hover:text-blue-400'}`} size={64} strokeWidth={1} />
+              <div className="flex flex-col items-center space-y-6 sm:space-y-8 relative z-20">
+                <div className="w-20 h-20 sm:w-32 sm:h-32 bg-slate-800/50 rounded-[1.5rem] sm:rounded-[2.5rem] flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-500/10 transition-all duration-700 shadow-[inset_0_2px_10px_rgba(0,0,0,0.3)] border border-white/5">
+                  <FileText className={`transition-all duration-700 sm:w-16 sm:h-16 ${isDragActive ? 'text-blue-400 scale-110' : 'text-slate-500 group-hover:text-blue-400'}`} size={40} strokeWidth={1} />
                 </div>
-                <div className="space-y-3">
-                  <h2 className="text-4xl font-black text-white tracking-tight drop-shadow-2xl">
+                <div className="space-y-2 sm:space-y-3">
+                  <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight drop-shadow-2xl">
                     Import Report
                   </h2>
-                  <p className="text-slate-400 text-lg font-medium opacity-80 group-hover:opacity-100 transition-opacity">
+                  <p className="text-slate-400 text-base sm:text-lg font-medium opacity-80 group-hover:opacity-100 transition-opacity">
                     Drag and drop your PDF or click to browse
                   </p>
                 </div>
@@ -181,13 +213,13 @@ function App() {
             {/* URL Input Area with High Contrast */}
             <div className="flex flex-col sm:flex-row gap-5 items-stretch px-4">
               <div className="relative flex-1 group">
-                <div className="absolute inset-y-0 left-7 flex items-center pointer-events-none text-slate-500 group-focus-within:text-blue-400 transition-colors">
-                  <LinkIcon size={20} />
+                <div className="absolute inset-y-0 left-5 sm:left-7 flex items-center pointer-events-none text-slate-500 group-focus-within:text-blue-400 transition-colors">
+                  <LinkIcon size={18} className="sm:w-5 sm:h-5" />
                 </div>
                 <input
                   type="text"
-                  placeholder="Paste secure link or Google Drive URL..."
-                  className="w-full h-20 bg-slate-900/60 border border-slate-800 rounded-[1.5rem] pl-16 pr-6 transition-all focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 focus:bg-slate-800/80 text-white placeholder:text-slate-600 font-medium text-lg shadow-inner"
+                  placeholder="Paste secure link..."
+                  className="w-full h-16 sm:h-20 bg-slate-900/60 border border-slate-800 rounded-[1.2rem] sm:rounded-[1.5rem] pl-12 sm:pl-16 pr-6 transition-all focus:outline-none focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 focus:bg-slate-800/80 text-white placeholder:text-slate-600 font-medium text-base sm:text-lg shadow-inner"
                   value={pdfUrl}
                   onChange={(e) => setPdfUrl(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleImportUrl()}
@@ -196,7 +228,7 @@ function App() {
               <button
                 onClick={handleImportUrl}
                 disabled={isProcessing || !pdfUrl.trim()}
-                className={`h-20 px-14 rounded-[1.5rem] font-black text-xl transition-all duration-500 flex items-center justify-center gap-4 group relative overflow-hidden
+                className={`h-16 sm:h-20 px-8 sm:px-14 rounded-[1.2rem] sm:rounded-[1.5rem] font-black text-lg sm:text-xl transition-all duration-500 flex items-center justify-center gap-4 group relative overflow-hidden
                   ${isProcessing || !pdfUrl.trim() ? 'bg-slate-800 text-slate-600 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-500 text-white shadow-[0_20px_40px_-10px_rgba(37,99,235,0.4)] hover:-translate-y-1 active:scale-95'}`}
               >
                 <div className="relative z-10 flex items-center gap-3">
@@ -315,7 +347,7 @@ function App() {
       </div>
 
       {/* Futuristic Bottom Branding */}
-      <footer className="mt-24 text-slate-700 text-[10px] font-black tracking-[0.6em] uppercase opacity-40 select-none pb-12 flex flex-col items-center gap-6">
+      <footer className="mt-24 text-slate-400 text-[10px] font-black tracking-[0.6em] uppercase opacity-70 select-none pb-12 flex flex-col items-center gap-6">
         <div className="flex items-center gap-3">
           <div className="w-px h-8 bg-gradient-to-b from-transparent via-blue-500 to-transparent"></div>
           <div className="w-10 h-10 bg-slate-900 border border-white/5 rounded-xl flex items-center justify-center text-blue-500 font-black italic shadow-inner animate-float text-xl">V</div>
