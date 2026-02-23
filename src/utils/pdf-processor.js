@@ -40,8 +40,8 @@ export async function processPdf({ pdfFile, logoBuffer, footerBuffer, footerText
         if (logoImage) {
             const margin = 1;
             const headerTopPadding = 5;
-            const maxLogoWidth = 350;
-            const maxLogoHeight = 350;
+            const maxLogoWidth = 400;
+            const maxLogoHeight = 400;
 
             const { width: imgW, height: imgH } = logoImage.size();
 
@@ -55,7 +55,7 @@ export async function processPdf({ pdfFile, logoBuffer, footerBuffer, footerText
             const headerTopY = height - HEADER_HEIGHT;
 
             page.drawImage(logoImage, {
-                x: (width - logoWidth) / 2,
+                x: (width - logoWidth) / 2 + 20, // Shifted back left slightly
                 y: headerTopY + (HEADER_HEIGHT - logoHeight) / 2 + headerTopPadding,
                 width: logoWidth,
                 height: logoHeight,
